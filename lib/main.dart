@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_classes_front/routes/base_route.dart';
 import 'package:my_classes_front/utils/config.dart';
-import 'package:my_classes_front/views/home.dart';
 
 ///
 ///
@@ -23,10 +23,11 @@ class MyClasses extends StatelessWidget {
   ///
   @override
   Widget build(final BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: Config().appName,
       theme: Config().themeData,
-      home: const Home(),
+      routerConfig: BaseRoute().routes,
     );
   }
 }
