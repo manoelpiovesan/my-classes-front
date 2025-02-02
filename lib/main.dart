@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:my_classes_front/utils/config.dart';
+import 'package:my_classes_front/views/home.dart';
 
+///
+///
+///
 void main() {
-  runApp(const MyApp());
+  runApp(const MyClasses());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+///
+///
+///
+class MyClasses extends StatelessWidget {
+  ///
+  ///
+  ///
+  const MyClasses({super.key});
 
+  ///
+  ///
+  ///
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: Config().appName,
+      theme: Config().themeData,
+      home: const Home(),
     );
   }
 }
-
