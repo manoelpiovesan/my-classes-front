@@ -1,3 +1,4 @@
+import 'package:my_classes_front/enums/role_enum.dart';
 import 'package:my_classes_front/models/abstract_model.dart';
 
 ///
@@ -8,7 +9,7 @@ class User extends AbstractModel {
   String lastName = '';
   String email = '';
   String username = '';
-  String role = '';
+  RoleEnum role = RoleEnum.unknown;
 
   ///
   ///
@@ -23,7 +24,7 @@ class User extends AbstractModel {
     lastName = map['last_name'];
     email = map['email'];
     username = map['username'];
-    role = map['role'];
+    role = RoleEnum.fromString(map['role']);
   }
 
   ///
@@ -36,7 +37,6 @@ class User extends AbstractModel {
     map['last_name'] = lastName;
     map['email'] = email;
     map['username'] = username;
-    map['role'] = role;
     return map;
   }
 }
