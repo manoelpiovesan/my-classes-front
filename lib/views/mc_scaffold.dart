@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_classes_front/utils/config.dart';
+import 'package:my_classes_front/views/widgets/mc_drawer.dart';
 
 ///
 ///
@@ -29,6 +30,7 @@ class _McScaffoldState extends State<McScaffold> {
       appBar: AppBar(
         title: Text(Config().appName),
       ),
+      drawer: const McDrawer(),
       body: widget.body,
     );
   }
