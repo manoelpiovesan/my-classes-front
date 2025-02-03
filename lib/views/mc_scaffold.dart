@@ -7,8 +7,16 @@ import 'package:my_classes_front/views/widgets/mc_drawer.dart';
 ///
 class McScaffold extends StatefulWidget {
   final Widget? body;
+  final String? title;
 
-  const McScaffold({super.key, this.body});
+  ///
+  ///
+  ///
+  const McScaffold({
+    super.key,
+    this.body,
+    this.title,
+  });
 
   ///
   ///
@@ -28,7 +36,7 @@ class _McScaffoldState extends State<McScaffold> {
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Config().appName),
+        title: Text(widget.title ?? Config().appName),
       ),
       drawer: const McDrawer(),
       body: widget.body,

@@ -4,7 +4,7 @@ import 'package:my_classes_front/models/abstract_model.dart';
 ///
 ///
 ///
-class User extends AbstractModel {
+class UserModel extends AbstractModel {
   String firstName = '';
   String lastName = '';
   String email = '';
@@ -14,14 +14,14 @@ class User extends AbstractModel {
   ///
   ///
   ///
-  User();
+  UserModel();
 
   ///
   ///
   ///
-  User.fromJson(final Map<String, dynamic> map) : super.fromJson(map) {
-    firstName = map['first_name'];
-    lastName = map['last_name'];
+  UserModel.fromJson(final Map<String, dynamic> map) : super.fromJson(map) {
+    firstName = map['firstName'];
+    lastName = map['lastName'];
     email = map['email'];
     username = map['username'];
     role = RoleEnum.fromString(map['role']);

@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_classes_front/models/user.dart';
+import 'package:my_classes_front/models/user_model.dart';
 import 'package:my_classes_front/utils/config.dart';
-import 'package:my_classes_front/utils/session.dart';
+import 'package:my_classes_front/utils/utils.dart';
 import 'package:my_classes_front/views/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ///
 ///
@@ -14,16 +16,16 @@ class AuthConsumer {
   ///
   ///
   Future<void> login(final LoginCredentials loginCredentials) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
     try {
       final http.Response response = await http.post(
+        Uri.parse(<String>[Config().backUrl, 'auth', 'login'].join('/')),
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
-        Uri.parse(<String>[Config().backUrl, 'auth', 'login'].join('/')),
         body: jsonEncode(loginCredentials.toJson()),
       );
-
-      print(response.body);
 
       if (response.statusCode < 200 || response.statusCode > 299) {
         throw Exception('Failed to login: ${response.body}');
@@ -31,10 +33,26 @@ class AuthConsumer {
 
       final Map<String, dynamic> json = jsonDecode(response.body);
 
-      Session().token = json['token'];
-      Session().user = User.fromJson(json['user']);
-    } catch (e) {
-      print(e);
+      await Utils().loadUserIntoStorage(
+        UserModel.fromJson(json['user']),
+        json['token'],
+      );
+
+      return;
+    } on Exception catch (e) {
+      if (kDebugMode) {
+        print('Failed to login: $e');
+      }
     }
+
+    return;
+  }
+
+  ///
+  ///
+  ///
+  Future<void> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 }

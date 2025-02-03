@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_classes_front/routes/course_route.dart';
 import 'package:my_classes_front/views/home.dart';
 import 'package:my_classes_front/views/login.dart';
 
@@ -33,6 +34,9 @@ class BaseRoute {
           return const LoginView();
         },
       ),
+
+      /// Course
+      ...CourseRoute().routes,
     ],
   );
 }
