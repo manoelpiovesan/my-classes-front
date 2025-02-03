@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_classes_front/consumers/course_consumer.dart';
 import 'package:my_classes_front/models/course_model.dart';
+import 'package:my_classes_front/views/mc_loading.dart';
+import 'package:my_classes_front/views/mc_no_data.dart';
 import 'package:my_classes_front/views/mc_scaffold.dart';
 
 ///
@@ -28,8 +31,12 @@ class _CourseListState extends State<CourseList> {
         final BuildContext context,
         final AsyncSnapshot<List<CourseModel>?> snapshot,
       ) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const McLoading(message: 'Carregando Cursos');
+        }
+
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return const McNoData(message: 'Nenhum Curso Encontrado');
         }
 
         return McScaffold(
@@ -42,10 +49,19 @@ class _CourseListState extends State<CourseList> {
             ) {
               final CourseModel course = snapshot.data![index];
 
-              return ListTile(
-                title: Text(course.name),
-                subtitle: Text(course.description),
-                leading: const Icon(Icons.school),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: ListTile(
+                  onTap: () => GoRouter.of(context).goNamed(
+                    'courseDetails',
+                    pathParameters: <String, String>{
+                      'id': course.id.toString(),
+                    },
+                  ),
+                  title: Text(course.name),
+                  subtitle: Text(course.description),
+                  leading: const Icon(Icons.school),
+                ),
               );
             },
           ),

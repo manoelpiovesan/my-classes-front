@@ -11,7 +11,7 @@ class Config {
   ///
   /// Theme data
   final ThemeData themeData = ThemeData(
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.blueGrey,
     useMaterial3: false,
   );
 }

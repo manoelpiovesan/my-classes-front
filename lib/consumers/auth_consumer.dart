@@ -16,7 +16,6 @@ class AuthConsumer {
   ///
   ///
   Future<void> login(final LoginCredentials loginCredentials) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
       final http.Response response = await http.post(

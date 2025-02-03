@@ -36,6 +36,7 @@ class _McScaffoldState extends State<McScaffold> {
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(widget.title ?? Config().appName),
       ),
       drawer: const McDrawer(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_classes_front/consumers/auth_consumer.dart';
-import 'package:my_classes_front/consumers/course_consumer.dart';
 import 'package:my_classes_front/utils/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
