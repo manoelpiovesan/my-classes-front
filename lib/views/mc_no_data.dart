@@ -17,18 +17,16 @@ class McNoData extends StatelessWidget {
   ///
   @override
   Widget build(final BuildContext context) {
-    return McScaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Icon(
-              Icons.info,
-              size: 100,
-            ),
-            Text(message ?? 'Nenhum Dado Encontrado'),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Icon(
+            Icons.info,
+            size: 100,
+          ),
+          Text(message ?? 'Nenhum Dado Encontrado'),
+        ],
       ),
     );
   }

@@ -15,10 +15,8 @@ class Home extends StatelessWidget {
   ///
   @override
   Widget build(final BuildContext context) {
-    return const McScaffold(
-      body: Center(
-        child: Text('Hello, World!'),
-      ),
+    return const Center(
+      child: Text('Hello, World!'),
     );
   }
 }

@@ -18,11 +18,11 @@ class CourseRoute extends AbstractRoute {
         GoRoute(
           name: 'courseList',
           path: '/courses',
-          builder: (final BuildContext context, final GoRouterState state) {
+          pageBuilder: (final BuildContext context, final GoRouterState state) {
             if (kDebugMode) {
               print('Navigating to: ${state.uri}');
             }
-            return const CourseList();
+            return const NoTransitionPage<Widget>(child: CourseList());
           },
         ),
 
@@ -30,15 +30,15 @@ class CourseRoute extends AbstractRoute {
         GoRoute(
           name: 'courseDetails',
           path: '/courses/:id',
-          builder: (final BuildContext context, final GoRouterState state) {
+          pageBuilder: (final BuildContext context, final GoRouterState state) {
             if (kDebugMode) {
               print('Navigating to: ${state.uri}');
             }
             if (state.pathParameters['id'] == null) {
-              return const CourseList();
+              return const NoTransitionPage<Widget>(child: CourseList());
             }
             final int id = int.parse(state.pathParameters['id']!);
-            return CourseDetails(id: id);
+            return NoTransitionPage<Widget>(child: CourseDetails(id: id));
           },
         ),
       ];

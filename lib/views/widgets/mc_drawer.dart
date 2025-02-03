@@ -51,7 +51,7 @@ class McDrawer extends StatelessWidget {
                 title: const Text('Home'),
                 leading: const Icon(Icons.home),
                 onTap: () {
-                  GoRouter.of(context).go('/');
+                  _navigate(context, 'home');
                 },
               ),
 
@@ -61,7 +61,7 @@ class McDrawer extends StatelessWidget {
                   title: const Text('Courses'),
                   leading: const Icon(Icons.school),
                   subtitle: const Text('Ver todos os cursos'),
-                  onTap: () => GoRouter.of(context).goNamed('courseList'),
+                  onTap: () => _navigate(context, 'courseList'),
                 ),
 
               /// Login and logout buttons.
@@ -71,19 +71,25 @@ class McDrawer extends StatelessWidget {
                   leading: const Icon(Icons.logout),
                   onTap: () {
                     AuthConsumer().logout();
-                    GoRouter.of(context).goNamed('login');
+                    _navigate(context, 'home');
                   },
                 )
               else
                 ListTile(
                   leading: const Icon(Icons.login),
                   title: const Text('Login'),
-                  onTap: () => GoRouter.of(context).goNamed('login'),
+                  onTap: () => _navigate(context, 'login'),
                 ),
             ],
           ),
         );
       },
     );
+  }
+
+  void _navigate(final BuildContext context, final String route) {
+    context..pop()
+    ..goNamed(route);
+
   }
 }

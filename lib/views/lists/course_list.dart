@@ -39,32 +39,29 @@ class _CourseListState extends State<CourseList> {
           return const McNoData(message: 'Nenhum Curso Encontrado');
         }
 
-        return McScaffold(
-          title: 'Meus Cursos',
-          body: ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (
-              final BuildContext context,
-              final int index,
-            ) {
-              final CourseModel course = snapshot.data![index];
+        return ListView.builder(
+          itemCount: snapshot.data!.length,
+          itemBuilder: (
+            final BuildContext context,
+            final int index,
+          ) {
+            final CourseModel course = snapshot.data![index];
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: ListTile(
-                  onTap: () => GoRouter.of(context).goNamed(
-                    'courseDetails',
-                    pathParameters: <String, String>{
-                      'id': course.id.toString(),
-                    },
-                  ),
-                  title: Text(course.name),
-                  subtitle: Text(course.description),
-                  leading: const Icon(Icons.school),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: ListTile(
+                onTap: () => GoRouter.of(context).goNamed(
+                  'courseDetails',
+                  pathParameters: <String, String>{
+                    'id': course.id.toString(),
+                  },
                 ),
-              );
-            },
-          ),
+                title: Text(course.name),
+                subtitle: Text(course.description),
+                leading: const Icon(Icons.school),
+              ),
+            );
+          },
         );
       },
     );

@@ -45,17 +45,14 @@ class _CourseDetailsState extends State<CourseDetails> {
 
         final CourseModel course = snapshot.data!;
 
-        return McScaffold(
-          title: course.name,
-          body: SizedBox(
-            width: double.infinity,
-            child: Column(
-              spacing: 8,
-              children: <Widget>[
-                Text(course.name),
-                Text(course.description),
-              ],
-            ),
+        return SizedBox(
+          width: double.infinity,
+          child: Column(
+            spacing: 8,
+            children: <Widget>[
+              Text(course.name),
+              Text(course.description),
+            ],
           ),
         );
       },

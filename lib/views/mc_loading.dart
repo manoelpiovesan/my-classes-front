@@ -17,15 +17,13 @@ class McLoading extends StatelessWidget {
   ///
   @override
   Widget build(final BuildContext context) {
-    return McScaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const CircularProgressIndicator(),
-            Text(message ?? 'Carregando...'),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const CircularProgressIndicator(),
+          Text(message ?? 'Carregando...'),
+        ],
       ),
     );
   }
